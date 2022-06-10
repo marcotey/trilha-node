@@ -1,9 +1,10 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 
-import { AppError } from '../errors/AppErros';
-import { UserRepository } from '../modules/accounts/repositories/implementatios/UserRepository';
-import { IAuthRequest } from '../modules/accounts/types/IAuthRequest';
+import { UserRepository } from '@modules/accounts/infra/repositories/UserRepository';
+import { AppError } from '@shared/errors/AppErros';
+
+import { IAuthRequest } from '../../../../modules/accounts/types/IAuthRequest';
 
 interface IPayload {
     sub: string;
