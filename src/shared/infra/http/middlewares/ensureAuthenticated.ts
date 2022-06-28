@@ -1,7 +1,7 @@
 import { NextFunction, Response } from 'express';
 import { verify } from 'jsonwebtoken';
 
-import { UserRepository } from '@modules/accounts/infra/repositories/UserRepository';
+import { UserRepository } from '@modules/accounts/infra/typeorm/repositories/UserRepository';
 import { AppError } from '@shared/errors/AppErros';
 
 import { IAuthRequest } from '../../../../modules/accounts/types/IAuthRequest';
