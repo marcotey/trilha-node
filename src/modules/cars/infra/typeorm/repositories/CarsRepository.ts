@@ -14,8 +14,8 @@ class CarsRepository implements ICarsRepository {
     }
     async findAvaliable(
         brand?: string,
-        category_id?: string,
         name?: string,
+        category_id?: string,
     ): Promise<Car[]> {
         const carsQuery = await this.repository
             .createQueryBuilder('c')
