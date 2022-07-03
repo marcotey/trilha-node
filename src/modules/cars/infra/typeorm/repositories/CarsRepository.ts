@@ -25,11 +25,11 @@ class CarsRepository implements ICarsRepository {
             carsQuery.andWhere('c.brand = :brand', { brand });
         }
 
-        if (brand) {
+        if (category_id) {
             carsQuery.andWhere('c.category_id = :category_id', { category_id });
         }
 
-        if (brand) {
+        if (name) {
             carsQuery.andWhere('c.name = :name', { name });
         }
 
