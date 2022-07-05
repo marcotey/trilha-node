@@ -12,6 +12,9 @@ class CarsRepository implements ICarsRepository {
     constructor() {
         this.repository = dataSource.getRepository(Car);
     }
+    findById(id: string): Promise<Car> {
+        throw new Error('Method not implemented.');
+    }
     async findAvaliable(
         brand?: string,
         name?: string,

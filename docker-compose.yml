@@ -13,6 +13,15 @@ services:
         - POSTGRES_DB=BDCurso
     volumes:
         - pgdata:/data/postgres
+
+
+  redis:
+    image: redis:alpine
+    restart: always
+    ports:
+        - 6379:6379
+    volumes: 
+        - cache:/data        
   app:
     build: .
     container_name: Curso-node
@@ -26,10 +35,14 @@ services:
       
     links:
         - database_ignite
+        - redis
     depends_on:
-        - database_ignite      
+        - database_ignite  
+        - redis    
     
 
 volumes:
     pgdata:  
         driver: local    
+    cache:
+        driver: local
