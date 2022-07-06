@@ -1,20 +1,6 @@
 version: "3.7"
 
 services:
-  database_ignite:
-    image: postgres
-    container_name: database_ignite
-    restart: always
-    ports:
-        - 5432:5432
-    environment:
-        - POSTGRES_USER=marcote
-        - POSTGRES_PASSWORD=123
-        - POSTGRES_DB=BDCurso
-    volumes:
-        - pgdata:/data/postgres
-
-
   redis:
     image: redis:alpine
     restart: always
@@ -34,10 +20,8 @@ services:
       
       
     links:
-        - database_ignite
         - redis
     depends_on:
-        - database_ignite  
         - redis    
     
 

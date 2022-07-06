@@ -1,10 +1,9 @@
 import { NextFunction, Response } from 'express';
-import { verify } from 'jsonwebtoken';
+import { decode, verify } from 'jsonwebtoken';
 
-import { UserRepository } from '@modules/accounts/infra/typeorm/repositories/UserRepository';
 import { AppError } from '@shared/errors/AppErros';
 
-import { IAuthRequest } from '../../../../modules/accounts/types/IAuthRequest';
+import { IAuthRequest } from '../../../../modules/customers/types/IAuthRequest';
 
 interface IPayload {
     sub: string;
@@ -24,16 +23,10 @@ export async function ensureAuthenticated(
     const [, token] = authheader.split(' ');
 
     try {
-        const { sub: user_id } = verify(
-            token,
-            'b4cc344d25a2efe540adbf2678e2304c',
-        ) as IPayload;
+        const { sub: user_id } = decode(token) as IPayload;
 
-        const userRepository = new UserRepository();
-        const user = userRepository.findById(user_id);
-
-        if (!user) {
-            throw new AppError('User does not exists!', 401);
+        if (user_id !== '794fad69-3917-498f-8a65-1ecde969f0db') {
+            throw new AppError('Não autorizado', 401);
         }
 
         request.user = {

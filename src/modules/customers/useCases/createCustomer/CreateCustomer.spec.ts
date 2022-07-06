@@ -1,4 +1,3 @@
-import { Customer } from '@modules/customers/entities/Customer';
 import { CustomerRepositoryInMemory } from '@modules/customers/repositories/in-memory/CustomerRepositoryInMemory';
 
 import { ListCustomerUseCase } from '../listCustomer/ListCustomerUseCase';
@@ -43,7 +42,7 @@ describe('Create Customer', () => {
             document: 65321,
             id: customer.id,
         });
-        console.log(customerUpdated);
+
         expect(customerUpdated).toEqual({
             name: 'James',
             document: 65321,
